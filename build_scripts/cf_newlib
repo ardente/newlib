@@ -1,5 +1,3 @@
-# script should be executed from root dir
-NEWLIB_SRC_DIR=../src
 DEST_DIR=$(realpath ./out)
 
 TARGET_CFG_FLAGS="--target=arm-eabi --without-fp --enable-newlib-hw-fp=no"
@@ -10,4 +8,7 @@ NEWLIB_CFG_FLAGS="--enable-newlib-multithread=no --disable-newlib-supplied-sysca
 
 mkdir -p ${DEST_DIR}
 
-../configure --prefix=${DEST_DIR} ${CFG_FLAGS} ${TARGET_CFG_FLAGS} ${NEWLIB_CFG_FLAGS}
+mkdir -p bld
+cd bld
+
+../../configure --prefix=${DEST_DIR} ${CFG_FLAGS} ${TARGET_CFG_FLAGS} ${NEWLIB_CFG_FLAGS}
