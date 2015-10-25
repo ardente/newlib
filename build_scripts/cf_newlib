@@ -1,0 +1,13 @@
+# script should be executed from root dir
+NEWLIB_SRC_DIR=../src
+DEST_DIR=$(realpath ./out)
+
+TARGET_CFG_FLAGS="--target=arm-eabi --without-fp --enable-newlib-hw-fp=no"
+CFG_FLAGS="--disable-nls --disable-shared --disable-multilib --enable-target-optspace --disable-libssp"
+NEWLIB_CFG_FLAGS="--enable-newlib-multithread=no --disable-newlib-supplied-syscalls\
+ --enable-newlib-register-fini=no --enable-newlib-io-c99-formats --disable-newlib-atexit-dynamic-alloc --enable-newlib-reent-small --disable-newlib-fvwrite-in-streamio\
+ --disable-newlib-fseek-optimization --disable-newlib-wide-orient --disable-newlib-unbuf-stream-opt --enable-newlib-global-atexit"
+
+mkdir -p ${DEST_DIR}
+
+../configure --prefix=${DEST_DIR} ${CFG_FLAGS} ${TARGET_CFG_FLAGS} ${NEWLIB_CFG_FLAGS}
